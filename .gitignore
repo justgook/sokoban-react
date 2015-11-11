@@ -1,0 +1,16 @@
+# Logs
+*.log
+
+# node-waf configuration
+.lock-wscript
+
+# Dependency directory
+node_modules
+
+# Build folder
+public
+
+
+#IDE files
+/.idea
+/*.iml

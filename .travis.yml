@@ -1,0 +1,9 @@
+language: node_js
+script: "./deploy-ghpages.sh"
+cache:
+  directories:
+  - node_modules
+env:
+  global:
+  - GH_REF: github.com/justgook/assets-storage.git
+  - secure: pL6c49CYTAJ7AIO9MsBFGQiqj3eRp+O635kaTSoXw3I+tt/V1rBGsw92HXxFpv+AWp7vhoaY60BxlkSoWOMSJtnzPfGGt0EthO6KgEmpljuRwFIZbiFGOIDQpjdNcG9QMLEhLwwbvfY1z9gf6hdy2EzS6HwqaLtMLY3tHw6oMhI+HiEAvr3AC2ZboenWd87NxD+/aO/Eo829IqA4mmS8Z44tFASurMgYABngu15oP7Y4gxwPB8lg865tM+tkqiABFHrrRFx4Waykn4f6CEbZmp5rPO9pwtZBCAA2XrOILKCSt2NqcXAxdOzQfduUMtWSXn4bJb978XBkFnbmxijT4HNCsH5lGuA1wKhua51EcQhPW8Esf8v7SHCgFS0f9gQFY6TZ8sYNWuCbIOgNUke9q1VWP8UXPEbHNtOGVvH4ITMAxxlb0QX7XdZwTTVnu45aORSRV5bXM4K5f2qJGeRhKc/Xs/8eD5lppvoGASD0zCrP1MROkgmtbp9m8uK8Uje7W9yN+fb3nz2ms4jotoZ8/Yy/0EW5+AxDrGjBM81Umwv9BhvgqnFPbGQD6WvFD/fL578N59rM9za9Da9WatMzVWDkosIS5w58V2rku/FxzxWqGpluj+athlYPZG8sZXzRyHb6J6U0Cgx/rZNUfWTtUkTed1tdTl00MUPFyybkCTs=

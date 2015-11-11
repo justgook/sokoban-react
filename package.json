@@ -1,0 +1,39 @@
+{
+  "name": "sokoban",
+  "version": "1.0.0",
+  "description": "https://github.com/AgentME/browserify-hmr",
+  "main": "test1.js",
+  "scripts": {
+    "watch": "npm run build && watchify src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js",
+    "prebuild": "mkdir -p public && cp src/index.html public && browserify -r morearty -r react -r react-dom > public/vendor.js",
+    "build": "browserify src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js",
+    "start": "browser-sync start --directory --files public/*.js --server public",
+    "clean": "rm -rf ./public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "browserify": {
+    "transform": [
+      "coffee-reactify",
+      "cssify"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^12.0.1",
+    "coffee-react": "^4.0.0",
+    "coffee-reactify": "^4.0.0",
+    "coffee-script": "^1.10.0",
+    "cssify": "^0.7.0",
+    "watchify": "^3.5.0"
+  },
+  "dependencies": {
+    "classnames": "^2.2.0",
+    "immutable": "^3.7.5",
+    "morearty": "^0.7.24",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-keybinding": "^2.0.1"
+  }
+}
