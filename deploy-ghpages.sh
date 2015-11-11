@@ -1,7 +1,7 @@
 #!/bin/bash
 rm -rf public || exit 0;
-mkdir public;
-npm run-script deploy
+# mkdir public;
+npm run build
 ( cd public
  git init
  git config user.name "Travis-CI"
