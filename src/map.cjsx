@@ -25,9 +25,10 @@ http://www.tablesgenerator.com/text_tables
 React = require 'react'
 Morearty  = require 'morearty'
 
-cx = require 'classnames'
 
-styleNode = require './boxes.css'
+classNames = require 'classnames/bind'
+styles = require './boxes.css'
+cx = classNames.bind styles
 
 tileStyle =
   width: "20px"
@@ -71,6 +72,9 @@ module.exports = React.createClass
   render: ->
     bindings = @getDefaultBinding()
     lastDirection = this.getBinding('lastMove')?.get() or "d"
+    player = this.getBinding('player').get().toJS()
+    offsetX = this.getBinding('size').get(0)
+    offsetY = this.getBinding('size').get(1)
     rows = bindings.get()
     # console.log bindings.sub(0).get()
     renderTile = (t, index)->
@@ -92,14 +96,16 @@ module.exports = React.createClass
       #   <Row key={index} binding={itemBinding} />
     width = 3 * bindings.sub(0).get().count()
     height = 3 * rows.count()
-    <section>
-      <div className={cx "perspective", lastDirection.toLowerCase()} style={
+    marginLeft = -player.x * 3 - 3
+    marginTop = -player.y * 3 - 3
+    # console.log marginLeft, marginTop
+    <section className={cx "perspective", lastDirection.toLowerCase()} style={
         width:"#{width}em"
         height: "#{height}em"
-        marginLeft: "-#{width/2 + 3}em"
-        marginTop: "-#{height/2 + 3}em"
+        marginLeft: "#{offsetX / 2}px"
+        marginTop: "#{offsetY / 2}px"
+        transform: "rotateX(45deg) rotateZ(45deg) translate(#{marginLeft}em, #{marginTop}em)"
       }>
         { rows.map(renderRow).toArray() }
-      </div>
 
     </section>

@@ -51,6 +51,7 @@ module.exports = (mapString)->
       y:0
     boxes: []
     goals: []
+    complite: 0
   decoded = (decode row for row in mapString.split "|")
   result.size =
     w: longestLength decoded
@@ -68,6 +69,7 @@ module.exports = (mapString)->
           result.player = x: i, y: index
           result.goals.push [i, index]
         when "*"
+          result.complite++
           result.boxes.push [i, index]
           result.goals.push [i, index]
 

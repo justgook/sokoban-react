@@ -2,27 +2,28 @@
   "name": "sokoban",
   "version": "1.0.0",
   "description": "https://github.com/AgentME/browserify-hmr",
-  "repository":"https://github.com/justgook/sokoban-react",
+  "repository": "https://github.com/justgook/sokoban-react",
   "main": "test1.js",
   "scripts": {
-    "watch": "npm run build && watchify src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js",
+    "watch": "npm run build && watchify --debug -p [css-modulesify -o public/main.css] src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js -v",
     "prebuild": "mkdir -p public && cp src/index.html public && browserify -r morearty -r react -r react-dom > public/vendor.js",
-    "build": "browserify src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js",
+    "build": "NODE_ENV=production browserify -p [css-modulesify  --after cssnano -o public/main.css] src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js -v",
+    "postbuild": "cssnano ./public/main.css ./public/main.min.css ",
     "start": "browser-sync start --directory --files public/*.js --server public",
     "clean": "rm -rf ./public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "browserify": {
     "transform": [
-      "coffee-reactify",
-      "cssify"
+      "coffee-reactify"
     ]
   },
   "keywords": [],
   "author": "",
-  "private":true,
+  "private": true,
   "license": "ISC",
   "optionalDependencies": {
+    "browser-sync": "2.10.0",
     "watchify": "3.5.0"
   },
   "devDependencies": {
@@ -30,7 +31,9 @@
     "coffee-react": "4.0.0",
     "coffee-reactify": "4.0.0",
     "coffee-script": "1.10.0",
-    "cssify": "0.7.0"
+    "css-modulesify": "0.15.0",
+    "cssnano": "3.3.2",
+    "cssnano-cli": "1.0.1"
   },
   "dependencies": {
     "classnames": "2.2.0",

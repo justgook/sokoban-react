@@ -4,6 +4,7 @@ module.exports = class
   constructor: (mapString)->
     mapData = mapDecode mapString
     @player = mapData.player
+    @complite = mapData.complite
     @map = mapData.map
 
   canMoveBox: (direction, boxX, boxY)->
@@ -18,9 +19,15 @@ module.exports = class
         @map[boxY + 1][boxX] not in ["#","*","$"]
 
   moveBox: (direction, boxX, boxY)->
+    if @map[boxY][boxX] is "*"
+      @complite--
 
     typeOfBox = (y, x)=> #type of new box - onSpot or onFloor
-      if @map[y][x] is "." then "*" else "$"
+      if @map[y][x] is "."
+        @complite++
+        "*"
+      else
+        "$"
 
     switch direction
       when "LEFT"
@@ -65,7 +72,7 @@ module.exports = class
         if @canMoveBox direction, newpos.x, newpos.y
           @moveBox direction, newpos.x, newpos.y
           @movePlayer newpos.x, newpos.y
-          direction[0].toLowerCase()
+          direction[0].toUpperCase()
         else
           false
 

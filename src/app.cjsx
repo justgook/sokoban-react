@@ -1,3 +1,8 @@
+classNames = require 'classnames/bind'
+styles = require './layout.css'
+cx = classNames.bind styles
+
+
 React = require 'react'
 Morearty  = require 'morearty'
 
@@ -35,6 +40,8 @@ exports.Context = Morearty.createContext
   initialState:
     map: [] #TODO move it to application
     moves: []
+    player: x:0, y:0
+    size: [500, 600] #size in pixels
 
 exports.Application = React.createClass
 
@@ -59,6 +66,9 @@ exports.Application = React.createClass
       binding = @getDefaultBinding()
       map = binding.sub "map"
       moves = binding.sub "moves"
+      player =
+      binding.sub("player").update (player)=>
+        player.mergeDeep @gameLogic.player
       moves.update (moves)-> moves.push value
       map.update (map)=>
         map.mergeDeep @gameLogic.map
@@ -66,11 +76,14 @@ exports.Application = React.createClass
   setMap: (mapString)->
     binding = @getDefaultBinding()
     @gameLogic = new GameLogic mapString
+    binding.sub("player").update (player)=>
+      player.mergeDeep @gameLogic.player
     binding.update "map", (map)=>
       newMap = fromJS @gameLogic.map
       map.setSize(newMap.size).mergeDeep newMap
 
   componentWillMount: ->
+
     mapList = [
       "4-5#|4-#3-#|4-#$2-#|2-3#2-$3#|2-#2-$2-$-#|3#-#-3#-#5-6#|#3-#-3#-7#2-2.#|#-$2-$13-2.#|5#-4#-#@4#2-2.#|4-#6-3#2-6#|4-8#"
       "12#|#2.2-#5-3#|#2.2-#-$2-$2-#|#2.2-#$4#2-#|#2.4-@-2#2-#|#2.2-#-#2-$-2#|6#-2#$-$-#|2-#-$2-$-$-$-#|2-#4-#5-#|2-12#"
@@ -80,7 +93,7 @@ exports.Application = React.createClass
       "6#2-3#|#2.2-#-2#@2#|#2.2-3#3-#|#2.5-2$-#|#2.2-#-#-$-#|#2.3#-#-$-#|4#-$-#$2-#|3-#2-$#-$-#|3-#-$2-$2-#|3-#2-2#3-#|3-9#"
       "7-5#|-7#3-2#|2#-#-@2#-2$-#|#4-$6-#|#2-$2-3#3-#|3#-5#$3#|#-$2-3#-2.#|#-$-$-$-3.#|#4-3#3.#|#-2$-#-#3.#|#2-3#-5#|4#"
     ]
-    @setMap mapList[0]
+    @setMap mapList[2]
 
   render: ->
     binding = @getDefaultBinding()
@@ -88,7 +101,14 @@ exports.Application = React.createClass
     movesJs = binding.sub("moves").toJS()
     if (movesLastIndex = movesJs.length - 1) >= 0
       mapBinding.lastMove = binding.sub("moves.#{movesLastIndex}")
-    <div>
-      <div>Moves Count <b>{movesJs.length}</b></div>
+    mapBinding.player = binding.sub "player"
+    mapBinding.size = binding.sub "size"
+    # console.log @gameLogic.player
+    <div className={cx "wrapper"} style={width:"#{binding.sub("size.0").get()}px", height:"#{binding.sub("size.1").get()}px"}>
+      <header>
+        <div className={cx "moves"}>
+          moves <span className={cx "count"}>{movesJs.length}</span>
+        </div>
+      </header>
       <Map binding={mapBinding} />
     </div>
