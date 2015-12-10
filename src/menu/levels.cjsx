@@ -30,7 +30,7 @@ module.exports = React.createClass
     <section className = { cx "container"}>
       <div className={cx "menu", "complete"} >
         {for i in [1..levels.size]
-          <a className = {cx "button", "level"} key = {i} onClick = {@click.bind @, i}>
+          <a className = {cx "button", "level"} key = {i} onClick = {@click.bind @, i - 1}>
             <span className = {cx "text"}>{i}</span>
             <span className = {cx "star-holder"}>
               <Star score = {false} /><Star score = {false} /><Star score = {false} />
