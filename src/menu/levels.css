@@ -1,0 +1,29 @@
+.complete {
+  flex-flow: row wrap !important;
+  align-items: flex-start;
+
+}
+.complete .level{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  width: 2.75em;
+  height: 2.25em;
+  padding-top: .5em;
+  line-height: .75em;
+  margin-bottom: .75em;
+  margin: .5em;
+  font-size: 2em;
+  border-radius: .5em;
+}
+
+.star-holder {
+  display: flex;
+  padding-bottom: 1em;
+  padding-top: .25em;
+  font-size: .5em;
+
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}

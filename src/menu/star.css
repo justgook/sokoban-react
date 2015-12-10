@@ -1,0 +1,17 @@
+.star-five, .star-five::before, .star-five::after {
+   display: block;
+}
+
+.star-five {
+   position: relative;
+   color:#0071AC;
+}
+
+.score {
+   color: #FFD700;
+}
+
+.star-five::before {
+   position: relative;
+   content: '\2605';
+}

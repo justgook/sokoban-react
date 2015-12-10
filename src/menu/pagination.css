@@ -1,0 +1,16 @@
+.container{
+  width: 100%;
+}
+.button {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border:none;
+  background: grey;
+  box-shadow: none;
+  border-radius: .5em;
+  margin: 0 .25em 0 .25em;
+}
+.button.selected{
+  background: red;
+}

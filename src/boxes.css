@@ -22,17 +22,12 @@
 .perspective {
     transition: transform .4s;
     background-color: hsla(0,0%,0%,.1);
-    background-image: -webkit-linear-gradient(hsla(0,0%,0%,.1) 2.5%, transparent 2.5%, transparent 97.5%, hsla(0,0%,0%,.1) 97.5%),
-                      -webkit-linear-gradient(left, hsla(0,0%,0%,.1) 2.5%, transparent 2.5%, transparent 97.5%, hsla(0,0%,0%,.1) 97.5%);
+    background-image: linear-gradient(hsla(0,0%,0%,.1) 2.5%, transparent 2.5%, transparent 97.5%, hsla(0,0%,0%,.1) 97.5%),
+                      linear-gradient(left, hsla(0,0%,0%,.1) 2.5%, transparent 2.5%, transparent 97.5%, hsla(0,0%,0%,.1) 97.5%);
     background-size: 3em 3em;
-    /*left: 50%;*/
-    /*top: 50%;*/
-    /*box-sizing: border-box*/
     padding: 3em;
-    /*position: absolute;*/
-    -webkit-transform-origin: 0 0;
-    /*-webkit-transform: translate(10em, 10em) rotateX(45deg) rotateZ(45deg);*/
-    -webkit-transform-style: preserve-3d;
+    transform-origin: 0 0;
+    transform-style: preserve-3d;
 }
 .cube,
 .cube:after,
@@ -51,21 +46,20 @@ position: absolute;
 .cube {
     background-color: #f66;
     position: relative;
-    -webkit-transform: translateZ(3em);
-    -webkit-transform-style: preserve-3d;
-    /*-webkit-transition: .25s;*/
+    transform: translateZ(3em);
+    transform-style: preserve-3d;
 }
 /* Left */
 .cube:after {
     background-color: #e55;
-    -webkit-transform: rotateX(-90deg) translateY(3em);
-    -webkit-transform-origin: 100% 100%;
+    transform: rotateX(-90deg) translateY(3em);
+    transform-origin: 100% 100%;
 }
 /* Right */
 .cube:before {
     background-color: #d44;
-    -webkit-transform: rotateY(90deg) translateX(3em);
-    -webkit-transform-origin: 100% 0;
+    transform: rotateY(90deg) translateX(3em);
+    transform-origin: 100% 0;
 }
 
 /* Cube Types */
@@ -89,7 +83,7 @@ position: absolute;
 
 .cube.goal {
     background-color: #cf6;
-    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 .cube.goal:after {
     visibility: hidden;
@@ -106,16 +100,7 @@ position: absolute;
 
 .cube.player, .cube.player-on-goal {
     background-color: transparent;
-
-    -webkit-transform: translateZ(0);
-    /*-webkit-animation: wave 2s ease-in-out infinite;*/
-    /*-webkit-transform: ;*/
-    /*width: 100px;
-    height: 100px;
-    background-color: transparent;
-    background-position: 20px 20px;
-    -webkit-transform: translateZ(0) rotateX(0) rotateY(0);
-    */
+    transform: translateZ(0);
 }
 
 .cube.player{
@@ -202,37 +187,3 @@ position: absolute;
     animation: playUL .8s steps(3) infinite, moveU .4s ease-out;
     transform: rotateZ(-45deg) rotateX(-45deg) scale(1,1) translateY(-3em) translateZ(4em) translateX(-3em) ;
 }
-
-
-/* Animation */
-
-@-webkit-keyframes wave {
-    50% { -webkit-transform: translateZ(4.5em); }
-}
-/*.cube:nth-child(1) {
-    -webkit-animation: wave 2s ease-in-out infinite;
-}*/
-/*.cube:nth-child(2) {
-    -webkit-animation: wave 2s .2s ease-in-out infinite;
-}
-.cube:nth-child(3) {
-    -webkit-animation: wave 2s .4s ease-in-out infinite;
-}
-.cube:nth-child(4) {
-    -webkit-animation: wave 2s .6s ease-in-out infinite;
-}
-.cube:nth-child(5) {
-    -webkit-animation: wave 2s .8s ease-in-out infinite;
-}
-.cube:nth-child(6) {
-    -webkit-animation: wave 2s 1s ease-in-out infinite;
-}
-.cube:nth-child(7) {
-    -webkit-animation: wave 2s 1.2s ease-in-out infinite;
-}
-.cube:nth-child(8) {
-    -webkit-animation: wave 2s 1.4s ease-in-out infinite;
-}
-.cube:nth-child(9) {
-    -webkit-animation: wave 2s 1.6s ease-in-out infinite;
-}​*/

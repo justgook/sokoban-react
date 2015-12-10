@@ -5,9 +5,9 @@
   "repository": "https://github.com/justgook/sokoban-react",
   "main": "test1.js",
   "scripts": {
-    "watch": "npm run build && watchify --debug -p [css-modulesify -o public/main.css] src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js -v",
+    "watch": "npm run build && watchify --debug -p [css-modulesify --after autoprefixer -o public/main.css] src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js -v",
     "prebuild": "mkdir -p public && cp src/index.html public && browserify -r morearty -r react -r react-dom > public/vendor.js",
-    "build": "NODE_ENV=production browserify -p [css-modulesify  --after cssnano -o public/main.css] src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js -v",
+    "build": "NODE_ENV=production browserify -p [css-modulesify --after autoprefixer   -o public/main.css] src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js -v",
     "postbuild": "cssnano ./public/main.css ./public/main.min.css ",
     "start": "browser-sync start --directory --files public/*.js --server public",
     "clean": "rm -rf ./public",
@@ -23,6 +23,7 @@
   "private": true,
   "license": "ISC",
   "optionalDependencies": {
+    "autoprefixer": "6.1.2",
     "browser-sync": "2.10.0",
     "watchify": "3.5.0"
   },
@@ -31,14 +32,14 @@
     "coffee-react": "4.0.0",
     "coffee-reactify": "4.0.0",
     "coffee-script": "1.10.0",
-    "css-modulesify": "0.15.0",
+    "css-modulesify": "0.16.0",
     "cssnano": "3.3.2",
     "cssnano-cli": "1.0.1"
   },
   "dependencies": {
-    "classnames": "2.2.0",
+    "classnames": "2.2.1",
     "immutable": "3.7.5",
-    "morearty": "0.7.24",
+    "morearty": "0.7.25",
     "react": "0.14.0",
     "react-dom": "0.14.0",
     "react-keybinding": "2.0.1"
