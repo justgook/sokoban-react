@@ -2,7 +2,8 @@ language: node_js
 node_js:
 - "stable"
 install: "npm install --no-optional"
-script: "./deploy-ghpages.sh"
+script: "npm run build"
+after_success: "./deploy-ghpages.sh"
 cache:
   directories:
   - node_modules
