@@ -7,8 +7,8 @@
   "scripts": {
     "watch": "npm run build && watchify --debug -p [css-modulesify --after autoprefixer -o public/main.css] src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js -v",
     "prebuild": "mkdir -p public && cp src/index.html public && browserify -r morearty -r react -r react-dom > public/vendor.js",
-    "build": "NODE_ENV=production browserify -p [css-modulesify --after autoprefixer   -o public/main.css] src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js -v",
-    "postbuild": "cssnano ./public/main.css ./public/main.min.css ",
+    "build": "NODE_ENV=production browserify -p [css-modulesify -o public/main.css] src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js -v",
+    "postbuild": "cssnano ./public/main.css ./public/main.css ",
     "start": "browser-sync start --directory --files public/*.js --server public",
     "clean": "rm -rf ./public",
     "test": "echo \"Error: no test specified\" && exit 1"
