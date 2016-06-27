@@ -1,0 +1,27 @@
+.button {
+  text-decoration: none;
+  color: #fafafa;
+  background: linear-gradient(to bottom, #88E0FD 0%, #4096ee 100%);
+  box-shadow: 0 0 0.5em 0 #000, 0 0 .1em .25em #015E81, 0 0 0 .25em #000, 0 .1em .1em .25em rgba(255, 255, 255, .5), 0 .2em .2em .25em rgba(255, 255, 255, .25) inset, 0 -.2em .1em rgba(0, 0, 0, .25) inset, 0 0 .05em 0 #000 inset;
+}
+.button:active {
+  box-shadow: 0 0 0.25em 0 #000, 0 0 .1em .25em #015E81, 0 0 0 .25em #000, 0 .1em .1em .25em rgba(255, 255, 255, .5), 0 .2em .2em .25em rgba(255, 255, 255, .25) inset, 0 -.175em .1em rgba(0, 0, 0, .25) inset, 0 0 .05em .05em #000 inset;
+}
+
+.green {
+  background: linear-gradient(to bottom, #AFFD6C 0%, #5CB23A 100%) !important;
+}
+.text {
+  transition: transform .3s;
+  transition-timing-function: cubic-bezier(0, 1.5, 1, 1.5);
+  text-shadow: 0 -.05em .05em #000;
+  display: block;
+  transform: scale(1, 1) translateY(0);
+}
+:hover > .text {
+  text-shadow: 0 .05em .05em #000;
+  transform: scale(1.05, 1.05) translateY(-.05em);
+}
+:active > .text {
+  transform: scale(1, 1) translateY(-.05em);
+}

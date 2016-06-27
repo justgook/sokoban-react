@@ -5,10 +5,10 @@
   "repository": "https://github.com/justgook/sokoban-react",
   "main": "test1.js",
   "scripts": {
-    "watch": "npm run build && watchify --debug -p [css-modulesify --after autoprefixer -o public/main.css] src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js -v",
-    "prebuild": "mkdir -p public && cp src/index.html public && browserify -r morearty -r react -r react-dom > public/vendor.js",
-    "build": "NODE_ENV=production browserify -p [css-modulesify -o public/main.css] src/index.coffee --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js -v",
-    "postbuild": "cssnano ./public/main.css ./public/main.css ",
+    "watch": "npm run build && watchify --debug -p [css-modulesify --after postcss-custom-properties --after autoprefixer -o public/main.css] src/index.coffee --exclude immutable --exclude react-keybinding --exclude react-addons-css-transition-group --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js -v",
+    "prebuild": "mkdir -p public && cp src/index.html public && browserify -r morearty -r immutable -r react -r react-dom -r react-addons-css-transition-group -r react-keybinding > public/vendor.js",
+    "build": "NODE_ENV=production browserify -p [css-modulesify --after postcss-custom-properties -o public/main.css] src/index.coffee --exclude immutable --exclude react-keybinding --exclude react-addons-css-transition-group --exclude morearty --exclude react --exclude react-dom --extension=.cjsx --extension=.coffee -o public/index.js -v",
+    "postbuild": "NODE_ENV=production uglifyjs public/vendor.js public/index.js -o public/result.js --stats -c sequences=true,properties=true,dead_code=true,drop_debugger=true,unsafe=true,conditionals=true,comparisons=true,booleans=true,loops=true,unused=true,if_return=true,join_vars=true,cascade=true,pure_getters=true,drop_console=true,warnings=true",
     "start": "browser-sync start --directory --files public/*.js --server public",
     "clean": "rm -rf ./public",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -32,16 +32,18 @@
     "coffee-react": "4.0.0",
     "coffee-reactify": "4.0.0",
     "coffee-script": "1.10.0",
-    "css-modulesify": "0.16.0",
+    "css-modulesify": "0.16.1",
     "cssnano": "3.3.2",
-    "cssnano-cli": "1.0.1"
+    "postcss-custom-properties": "5.0.0",
+    "uglifyjs": "2.4.10"
   },
   "dependencies": {
+    "react-addons-css-transition-group": "0.14.3",
     "classnames": "2.2.1",
     "immutable": "3.7.5",
     "morearty": "0.7.25",
-    "react": "0.14.0",
+    "react": "0.14.3",
     "react-dom": "0.14.0",
-    "react-keybinding": "2.0.1"
+    "react-keybinding": "2.1.1"
   }
 }

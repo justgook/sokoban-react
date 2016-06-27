@@ -1,0 +1,90 @@
+.overlay{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .5);
+  z-index: 1;
+}
+
+
+
+@keyframes bounceInDown {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0);
+  }
+
+  75% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, 5px, 0);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+
+:root {
+  --transitionEnterTimeout:500;
+  --transitionLeaveTimeout:300;
+  --transitionAppearTimeout:750;
+}
+
+:export {
+  --transitionEnterTimeout:var(--transitionEnterTimeout);
+  --transitionLeaveTimeout:var(--transitionLeaveTimeout);
+  --transitionAppearTimeout:var(--transitionAppearTimeout);
+}
+
+.animation {
+  /*composes: menu from "./menu.css";*/
+}
+
+.animation-enter {
+  opacity: 0.01;
+}
+
+.animation-enter.animation-enter-active {
+  opacity: 1;
+  transition: opacity var(--transitionEnterTimeout)ms ease-in;
+}
+
+.animation-leave {
+  opacity: 1;
+}
+
+.animation-leave.animation-leave-active {
+  opacity: 0.01;
+  transition: opacity var(--timeMs)ms ease-in;
+}
+
+.animation-appear {
+  /*opacity: 0.01;*/
+}
+
+.animation-appear.animation-appear-active {
+  animation-fill-mode: both;
+  animation-duration: var(--transitionAppearTimeout)ms;
+  animation-name: bounceInDown;
+
+  /*opacity: 1;*/
+  /*transition: opacity .5s ease-in;*/
+}

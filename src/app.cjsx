@@ -12,9 +12,12 @@ Keybinding = require 'react-keybinding'
 # Rules = require './rules'
 Map = require './map'
 
-Pause = require './menu/pause.cjsx'
-Levels = require './menu/levels.cjsx'
 
+
+
+
+MenuHolder = require './menu/holder.cjsx'
+Levels = require './menu/levels.cjsx'
 
 
 
@@ -45,11 +48,19 @@ GameLogic = require './GameLogic'
 
 exports.Context = Morearty.createContext
   initialState:
-    levels: require "./map-list.json"
+    'levels-list': require "./map-list.json"
+    curentLevel:
+      map: {} #current state of MAP it can hold List or some Magic kind of quad-tree
+      moves: [] #moves history
+      time: 0 #time played TODO find better solution
+      boxes: 0 #total count of boxes in level
+      boxesOnGoal: 0 #boxes on goal
+      player: x: 0, y: 0 #player position in world
+      pause: no
     pause: no
     map: [] #TODO move it to application
     moves: []
-    player: x:0, y:0
+    player: x: 0, y: 0
     size: [720, 400] #size in pixels
 
 exports.Application = React.createClass
@@ -67,7 +78,7 @@ exports.Application = React.createClass
     "arrow-down": "DOWN"
     "esc": ->
       binding = @getDefaultBinding()
-      binding.set "pause", yes
+      binding.set "pause", not binding.get "pause"
       console.log "dsadasdsa"
 
   keybinding: (e, direction)->
@@ -100,11 +111,6 @@ exports.Application = React.createClass
 
   componentDidMount: ->
 
-  onFocus: ->
-    console.log "focus"
-
-  onBlur: ->
-    console.log "blur"
 
   render: ->
     binding = @getDefaultBinding()
@@ -119,7 +125,7 @@ exports.Application = React.createClass
 
     # console.log @gameLogic.player
     #style={width:"#{binding.sub("size.0").get()}px", height:"#{binding.sub("size.1").get()}px"}
-    <div onFocus = {@onFocus} onBlur = {@onBlur} className={cx "wrapper"} tabIndex = "-1">
+    <div className={cx "wrapper"}>
       {if activeMap
         <header>
           <div className = {cx "moves"}>
@@ -128,8 +134,8 @@ exports.Application = React.createClass
         </header>
         <Map binding = {mapBinding} />
       else
-        <Levels binding = {default: binding.sub("levels")} setMap={@setMap} />
+        <MenuHolder>
+          <Levels binding = {default: binding.sub("levels-list")} setMap={@setMap} />
+        </MenuHolder>
       }
-      {if binding.get "pause" then <Pause />}
-
     </div>

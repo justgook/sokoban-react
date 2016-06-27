@@ -1,0 +1,19 @@
+.index {
+  composes: menu from "./menu.css";
+}
+
+.button {
+  composes: button from "./button.css";
+  padding: .2em .75em .2em .75em;
+  margin: .5em;
+  font-size: 2em;
+  border-radius: 1em;
+}
+
+.green {
+   composes: green from "./button.css";
+}
+
+.text{
+  composes: text from "./button.css";
+}

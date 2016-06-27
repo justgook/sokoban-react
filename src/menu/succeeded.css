@@ -1,0 +1,52 @@
+.stars {
+  display: flex;
+  justify-content: center;
+  flex-flow: row nowrap;
+  font-size: 3em;
+}
+.succeeded {
+  text-shadow: 0 .05em 0 #666;
+  font-size: 3em;
+}
+
+
+
+@keyframes drop {
+  0%, 100% {
+    transform: scale(1, 1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.15, 1.15) translate(0, -.25em);
+  }
+}
+.succeeded>:nth-child(1n) {
+  animation: drop .5s cubic-bezier(0, 1.5, 1, 1.5);
+}
+.succeeded>:nth-child(1) {
+  text-shadow: inherit;
+  animation-delay: .1s;
+}
+.succeeded>:nth-child(2) {
+  animation-delay: .2s;
+}
+.succeeded>:nth-child(3) {
+  animation-delay: .3s;
+}
+.succeeded>:nth-child(4) {
+  animation-delay: .4s;
+}
+.succeeded>:nth-child(5) {
+  animation-delay: .5s;
+}
+.succeeded>:nth-child(6) {
+  animation-delay: .6s;
+}
+.succeeded>:nth-child(7) {
+  animation-delay: .7s;
+}
+.succeeded>:nth-child(8) {
+  animation-delay: .8s;
+}
+.succeeded>:nth-child(9) {
+  animation-delay: .9s;
+}

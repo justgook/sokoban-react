@@ -1,29 +1,14 @@
-.container, .menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0, 0, 0, .5);
-  z-index: 1;
-}
-
 .menu {
+  display: flex;
+  flex-flow: column;
   position: relative;
   padding: 1em;
-  align-items: stretch;
   text-align: center;
-  border: 3px dashed rgba(0, 90, 151, .5);
+  border: .25em dashed rgba(0, 90, 151, .5);
   border-radius: 1em;
   max-width: 90%;
 }
+
 .menu::before {
   border-radius: 1em;
   background: red;
@@ -35,68 +20,7 @@
   left: -.5em;
   content: "";
   background: linear-gradient(to bottom, #55d2ff 0%, #018abd 43%, #018abd 100%);
-  box-shadow: 0 -3px 5px -1px #000 inset, 0 5px 4px -2px #FFF inset;
-}
-
-
-.button {
-  text-decoration: none;
-  color: #fafafa;
-  background: linear-gradient(to bottom, #88E0FD 0%, #4096ee 100%);
-  box-shadow:
-    0 0 0.5em 0 #000,
-    0 0 .1em .25em #015E81,
-    0 0 0 .25em #000,
-    0 .1em .1em .25em rgba(255, 255, 255, .5),
-    0 .2em .2em .25em rgba(255, 255, 255, .25) inset,
-    0 -.2em .1em rgba(0, 0, 0, .25) inset,
-    0 0 .05em 0 #000 inset
-    ;
-
-}
-
-.button:active{
-
-  box-shadow:
-    0 0 0.25em 0 #000,
-    0 0 .1em .25em #015E81,
-    0 0 0 .25em #000,
-    0 .1em .1em .25em rgba(255, 255, 255, .5),
-    0 .2em .2em .25em rgba(255, 255, 255, .25) inset,
-    0 -.175em .1em rgba(0, 0, 0, .25) inset,
-    0 0 .05em .05em #000 inset
-    ;
-}
-
-.default {
-  padding: .2em .75em .2em .75em;
-  margin: .5em;
-  font-size: 2em;
-  border-radius: 1em;
-}
-
-
-.button .text {
-  text-shadow: 0 -1px 2px #000;
-  transition: inherit;
-  display: block;
-  transform: scale(1,1) translateY(0) ;
-}
-
-.green {
-  background: linear-gradient(to bottom, #AFFD6C 0%, #5CB23A 100%) !important;
-}
-
-.button:hover .text{
-  transition: transform .3s;
-  transition-timing-function: cubic-bezier(0, 1.25, 1, 1.25);
-  text-shadow: 0 2px 2px #000;
-  transform: scale(1.05,1.05) translateY(-1px) ;
-}
-
-
-.button:active .text{
-  transform: scale(1,1) translateY(-1px) ;
+  box-shadow: 0 -.25em .5em -.25em #000 inset, 0 .5em .25em -.25em #FFF inset;
 }
 /*:after{
 background: #025F88;

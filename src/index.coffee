@@ -9,7 +9,6 @@ Morearty  = require 'morearty'
 {Application, Context} = require './app'
 
 Bootstrap = Context.bootstrap Application
-
 ReactDOM.render <Bootstrap />, document.getElementById 'application'
 
 

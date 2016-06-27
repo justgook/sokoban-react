@@ -3,6 +3,9 @@
   align-items: flex-start;
 
 }
+.button {
+  composes: button from "./button.css";
+}
 .complete .level{
   display: flex;
   flex-flow: column wrap;
@@ -22,7 +25,6 @@
   padding-bottom: 1em;
   padding-top: .25em;
   font-size: .5em;
-
   flex-flow: row nowrap;
   justify-content: center;
   align-items: flex-start;
